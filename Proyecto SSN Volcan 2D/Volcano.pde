@@ -3,6 +3,7 @@ class Volcano {
   Vent vent;
   MagmaChamber magmaChamber;
   RockLayers rockLayers;
+  VolcanicPipe volcanicPipe;
 
   void draw() {
     crater.draw();
