@@ -1,9 +1,9 @@
 # Proyecto-SSN-Volcan-2D
 
-Brenes Mendez Ignacio 2020150797
-Estefanía Pérez Hidalgo 2017168345
-David Centeno Araya 2020103578
-Gabriel Núñez González 2022058171
+- Brenes Mendez Ignacio 2020150797
+- Estefanía Pérez Hidalgo 2017168345
+- David Centeno Araya 2020103578
+- Gabriel Núñez González 2022058171
 
 El presente proyecto tiene como objetivo desarrollar una simulación en 2D de un volcán utilizando el lenguaje de programación Processing, con el fin de recrear los procesos de manera interactiva y controlable.
 
