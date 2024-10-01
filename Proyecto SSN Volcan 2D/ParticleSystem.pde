@@ -18,8 +18,6 @@ class ParticleSystem {
   }
 
   void draw() {
-    for (Particle p : particles) {
-      p.draw();
-    }
+    //logica
   }
 }

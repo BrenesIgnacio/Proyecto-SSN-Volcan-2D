@@ -5,7 +5,10 @@ class VolcanoSimulation {
   ControlPanel controls;
 
   void setup() {
-    // logica
+    volcano = new Volcano();
+    lavaSystem = new ParticleSystem(10, "lava");  // valores de relleno
+    gasSystem = new ParticleSystem(5, "gas");    // valores de relleno
+    controls = new ControlPanel();
   }
 
   void draw() {

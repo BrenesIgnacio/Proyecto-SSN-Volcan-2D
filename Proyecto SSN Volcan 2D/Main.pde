@@ -7,7 +7,7 @@ void setup() {
 }
 
 void draw() {
-  background(255);
+  background(135, 206, 235);
   simulation.draw();
   simulation.update();
   simulation.handleControls();
