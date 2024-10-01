@@ -8,7 +8,7 @@ class Crater {
     this.position = position;
     this.radius = radius;
 
-    boldFont = createFont("Arial-Bold", 19);
+    boldFont = createFont("Calibri Bold", 19);
   }
 
   void draw() {

@@ -30,7 +30,7 @@ class RockLayers {
       layer.endShape(CLOSE);
       layers.add(layer);
 
-      boldFont = createFont("Arial-Bold", 19);
+      boldFont = createFont("Calibri Bold", 19);
     }
   }
 

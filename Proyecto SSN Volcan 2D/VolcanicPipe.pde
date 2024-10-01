@@ -10,7 +10,7 @@ class VolcanicPipe {
     this.width = width;
     this.height = height;
 
-    boldFont = createFont("Arial-Bold", 19);
+    boldFont = createFont("Calibri Bold", 19);
   }
 
   void draw() {

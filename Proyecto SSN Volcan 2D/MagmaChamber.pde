@@ -12,7 +12,7 @@ class MagmaChamber {
     this.height = height;
     this.temperature = temperature;
 
-    boldFont = createFont("Arial-Bold", 19);
+    boldFont = createFont("Calibri Bold", 19);
   }
 
   void draw() {
