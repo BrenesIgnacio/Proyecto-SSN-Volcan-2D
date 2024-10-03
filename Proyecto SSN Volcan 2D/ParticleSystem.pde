@@ -10,7 +10,10 @@ class ParticleSystem {
   }
 
   void update() {
-    // logica
+    for (Particle p : particles) {
+      p.draw();
+      p.update();
+    }
   }
 
   void emit() {
@@ -22,4 +25,20 @@ class ParticleSystem {
       p.draw();
     }
   }
+  
+  void addParticle(float x, float y) {
+    PVector pos_p = new PVector(x,y);
+    PVector vel = PVector.random2D(); 
+    vel.setMag(random(0,5));
+    float temp;
+    if(particleType == "basaltic"){
+      temp = 2000;
+    }else{
+      temp = 1500;
+    }
+    particles.add(new Particle(pos_p, vel,random(1,5),temp,this.particleType));
+    
+  }
+  
+  
 }
