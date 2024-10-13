@@ -1,10 +1,10 @@
 VolcanoSimulation simulation;
-ParticleSystem system;
+ArrayList<ParticleSystem> system;
 void setup() {
   size(800, 600);
   //simulation = new VolcanoSimulation();
   //simulation.setup();
-  system = new ParticleSystem(10,"basaltic");
+  system = new ArrayList();
 }
 
 void draw() {
@@ -12,8 +12,11 @@ void draw() {
   //simulation.draw();
   //simulation.update();
   //simulation.handleControls();
-  system.update();
+  for(ParticleSystem p: system){
+    p.draw();
+  }
+  
   if (mousePressed && mouseButton == LEFT) {
-    system.addParticle(mouseX, mouseY);
+    system.add(new ParticleSystem(10, "basaltic",mouseX, mouseY));
   }
 }
