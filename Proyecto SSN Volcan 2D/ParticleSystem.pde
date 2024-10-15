@@ -5,13 +5,17 @@ class ParticleSystem {
   float emissionRate;
   String particleType;
   PVector pos;
+  float temperature;
+  float mass;
   
 
-  ParticleSystem(float emissionRate, String particleType, float x, float y) {
+  ParticleSystem(float emissionRate, String particleType, float x, float y, float temperature, float mass) {
     particles = new ArrayList<Particle>();
     this.emissionRate = emissionRate;
     this.particleType = particleType;
     this.pos = new PVector(x, y);
+    this.temperature = temperature;
+    this.mass =  mass;
   }
 
   void update() {
@@ -64,15 +68,12 @@ class ParticleSystem {
     // Velocidad de caída inicial hacia abajo, con algo de aleatoriedad
     PVector vel = new PVector(random(-0.5, 0.5), random(0.5, 2));
     
-    float temp;
-    if (particleType == "basaltic") {
-      temp = 2000;
-    } else {
-      temp = 1500;
+    if (particleType != "basaltic") {
+      temperature = 1500;
     }
     
     // Añadir la nueva partícula al sistema
-    particles.add(new Particle(pos_p, vel, random(10, 27), temp, this.particleType));
+    particles.add(new Particle(pos_p, vel, mass, temperature, this.particleType));
   }
 
  void resolveCollisions() {

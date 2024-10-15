@@ -44,9 +44,6 @@ class Particle {
     
     if(position.y > 300){
       borders();
-      mass -= 0.003;
-    }else{
-      mass -= 0.4;
     }
     
   } 

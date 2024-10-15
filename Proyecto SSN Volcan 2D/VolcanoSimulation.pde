@@ -2,21 +2,21 @@ class VolcanoSimulation {
   Volcano volcano;
   ParticleSystem lavaSystem;
   ParticleSystem gasSystem;
-  ControlPanel controls;
+  //ControlPanel controls;
 
   void setup() {
     // logica
     volcano = new Volcano();
     //lavaSystem = new ParticleSystem(10, "lava");  // valores de relleno
     //gasSystem = new ParticleSystem(5, "gas");    // valores de relleno
-    controls = new ControlPanel();
+    //controls = new ControlPanel();
   }
 
   void draw() {
     volcano.draw();
     //lavaSystem.draw();
     //gasSystem.draw();
-    controls.draw();
+    //controls.draw();
   }
 
   void update() {
@@ -25,6 +25,6 @@ class VolcanoSimulation {
   }
 
   void handleControls() {
-    controls.handleInput();
+    //controls.handleInput();
   }
 }
