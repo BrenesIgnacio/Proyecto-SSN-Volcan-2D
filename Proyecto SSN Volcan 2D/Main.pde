@@ -17,7 +17,8 @@ void setup() {
   float defaultTemp = 0;
   float defaultMass = 0;
   
-  system.add(new ParticleSystem(10, "basaltic", x/2, y/4, defaultTemp, defaultMass));
+  system.add(new ParticleSystem(20, "basaltic",400, 590));
+  
 }
 
 
@@ -33,10 +34,13 @@ void draw() {
     float YY = controlPanel.getMass();
 
     for (ParticleSystem p : system) {
-      p.temperature = XX;
-      p.mass = YY;
+      //p.temperature = XX;
+      //p.mass = YY;
+      p.setControlValues(XX,YY);
       p.draw();
     }
+    
+    
   }
 
   controlPanel.draw();

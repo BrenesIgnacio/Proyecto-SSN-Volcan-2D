@@ -12,7 +12,9 @@ class Vent {
   }
 
   void draw() {
-    fill(255, 69, 0);
+    float inter = map(1, 0, height, 0, 1);
+    int c = lerpColor(color(50, 50, 50), color(20, 20, 20), inter);
+    fill(c);
     noStroke();
 
     float ventHeight = width / 2;

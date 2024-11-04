@@ -15,7 +15,7 @@ class Crater {
     colorMode(RGB);
     for (int i = 0; i < radius; i++) {
       float inter = map(i, 0, radius, 0, 1);
-      int c = lerpColor(color(233, 138, 43), color(224, 93, 26), inter);
+      int c = lerpColor(color(50, 50, 50), color(20, 20, 20), inter);
       fill(c);
       noStroke();
       float heightFactor = 0.5;

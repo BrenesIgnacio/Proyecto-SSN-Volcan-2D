@@ -19,7 +19,7 @@ class MagmaChamber {
     colorMode(RGB);
     for (int i = 0; i < height; i++) {
       float inter = map(i, 0, height, 0, 1);
-      int c = lerpColor(color(244, 177, 11), color(250, 219, 0), inter);
+      int c = lerpColor(color(50, 50, 50), color(20, 20, 20), inter);
       fill(c);
       noStroke();
       ellipse(position.x, position.y + (i / 2), width, height - i);
