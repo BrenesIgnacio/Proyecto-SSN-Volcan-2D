@@ -16,7 +16,7 @@ void draw() {
     p.draw();
   }
   
-  if (mousePressed && mouseButton == LEFT) {
-    system.add(new ParticleSystem(10, "basaltic",mouseX, mouseY));
-  }
+  
+   system.add(new ParticleSystem(10, "basaltic",400, 590));
+  
 }
