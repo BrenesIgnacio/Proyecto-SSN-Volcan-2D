@@ -10,6 +10,7 @@ class ParticleSystem {
   ParticlePool particlePool;
   int framesBetweenEmissions = 3; // Espaciar la emisión de partículas
   float countParticles;
+  boolean cond = false;
 
 
   ParticleSystem(float emissionRate, String particleType, float x, float y) {
@@ -54,6 +55,7 @@ class ParticleSystem {
       // Revisar si está en pantalla antes de actualizar
       
         if (p.position.y < 150 ) {
+          cond = true;
           p.addGravity(new PVector(0, 0.001));  // Simula la gravedad
           p.applyDrag(0.01);
           float dispersionFactor = random(-2, 3); // Factor de dispersión
@@ -80,11 +82,11 @@ class ParticleSystem {
 
   void addParticle() {
     PVector pos_p = new PVector(pos.x, pos.y);
-    PVector vel = new PVector(random(-0.5, 0.5), random(-2, 4));
+    PVector vel = new PVector(random(-0.5,0.5), -10);
     float temp = (particleType.equals("basaltic")) ? 2000 : 1500;
 
     // Obtener una partícula del pool en lugar de crear una nueva
-    Particle newParticle = particlePool.getParticle(pos_p, vel, 10, temp, particleType);
+    Particle newParticle = particlePool.getParticle(pos_p, vel, 8, temp, particleType);
     particles.add(newParticle);
   }
 

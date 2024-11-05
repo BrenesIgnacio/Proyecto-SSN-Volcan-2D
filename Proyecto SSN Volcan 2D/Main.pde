@@ -1,7 +1,7 @@
 VolcanoSimulation simulation;
 ArrayList<ParticleSystem> system;
 ControlPanel controlPanel;
-
+float i;
 void setup() {
   int x = 800, y = 600;
   size(800, 600);
@@ -10,7 +10,7 @@ void setup() {
   simulation.setup();
   
   system = new ArrayList();
-
+  
   controlPanel = new ControlPanel(this);
   controlPanel.setup();
 
@@ -18,13 +18,16 @@ void setup() {
   float defaultMass = 0;
   
   system.add(new ParticleSystem(20, "basaltic",400, 590));
-  
+  i = 0;
 }
 
 
 void draw() {
   background(135, 206, 235);
-
+  if (system.get(0).cond && i == 0){
+      system.add(new ParticleSystem(20, "basaltic",400, 150));
+      i = 1;
+  }
   simulation.draw();
   simulation.update();
   simulation.handleControls();
@@ -36,9 +39,11 @@ void draw() {
     for (ParticleSystem p : system) {
       //p.temperature = XX;
       //p.mass = YY;
+      
       p.setControlValues(XX,YY);
       p.draw();
     }
+    
     
     
   }

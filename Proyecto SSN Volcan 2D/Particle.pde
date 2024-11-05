@@ -46,7 +46,7 @@ class Particle {
     velocity.add(acc);
     position.add(velocity);
     acc.mult(0);
-    velocity.limit(3);
+    velocity.limit(2);
     
     if (position.y > 100) {
       borders();
@@ -57,8 +57,8 @@ class Particle {
   } 
   
   void borders() {
-    float minX = 380;
-    float maxX = width - 380;
+    float minX = 390;
+    float maxX = width - 390;
     if (position.y > 100){
       if (position.x < minX + d / 2) {
       position.x = minX + d / 2; 
