@@ -3,8 +3,8 @@ ArrayList<ParticleSystem> system;
 ControlPanel controlPanel;
 float i;
 void setup() {
-  int x = 800, y = 600;
-  size(800, 600);
+  int x = 800, y = 900;
+  size(800, 900);
   
   simulation = new VolcanoSimulation();
   simulation.setup();
@@ -17,7 +17,7 @@ void setup() {
   float defaultTemp = 0;
   float defaultMass = 0;
   
-  system.add(new ParticleSystem(20, "basaltic",400, 590));
+  system.add(new ParticleSystem(20, "basaltic",400, 890));
   i = 0;
 }
 
@@ -25,7 +25,7 @@ void setup() {
 void draw() {
   background(135, 206, 235);
   if (system.get(0).cond && i == 0){
-      system.add(new ParticleSystem(20, "basaltic",400, 150));
+      system.add(new ParticleSystem(20, "basaltic",400, 410));
       i = 1;
   }
   simulation.draw();

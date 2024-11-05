@@ -27,6 +27,6 @@ class VolcanicPipe {
     textAlign(CENTER);
     textFont(boldFont);
     textSize(19);
-    text("Volcanic Pipe", 310, 300);
+    text("Volcanic Pipe", 310, 600);
   }
 }

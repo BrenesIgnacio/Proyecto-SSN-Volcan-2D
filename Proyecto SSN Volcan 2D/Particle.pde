@@ -48,18 +48,18 @@ class Particle {
     acc.mult(0);
     velocity.limit(2);
     
-    if (position.y > 100) {
+    if (position.y > 425) {
       borders();
       mass -= 0.003;
     } else {
-      mass -= 0.4;
+      mass -= 0.7;
     }
   } 
   
   void borders() {
     float minX = 390;
     float maxX = width - 390;
-    if (position.y > 100){
+    if (position.y > 425){
       if (position.x < minX + d / 2) {
       position.x = minX + d / 2; 
       velocity.x *= -damp; 
@@ -89,8 +89,8 @@ class Particle {
     // Solo se aplica el color si está por debajo del umbral del cráter
     
     // Colores solo aplicables cuando la partícula está en la parte superior
-    if (position.y > 150){
-      float coolingFactor = map(position.y, 100, 600, 0, 1);  
+    if (position.y > 425){
+      float coolingFactor = map(position.y, 100, 900, 0, 1);  
       color currentColor;
       currentColor = lerpColor(hotColor, warmColor, map(coolingFactor, 0.5, 1, 0, 1));
       fill(currentColor, max(0, temperature));

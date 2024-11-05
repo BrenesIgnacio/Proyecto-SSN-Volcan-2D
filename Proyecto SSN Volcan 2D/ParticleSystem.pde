@@ -54,7 +54,7 @@ class ParticleSystem {
     for (Particle p : particles) {
       // Revisar si está en pantalla antes de actualizar
       
-        if (p.position.y < 150 ) {
+        if (p.position.y < 425 ) {
           cond = true;
           p.addGravity(new PVector(0, 0.001));  // Simula la gravedad
           p.applyDrag(0.01);
@@ -73,7 +73,7 @@ class ParticleSystem {
   
   void setControlValues(float temp,float mass){
     for (Particle p : particles){
-      if (p.position.y < 150){
+      if (p.position.y < 425){
         p.temperature = temp;
         p.mass = mass;
       }
@@ -86,7 +86,7 @@ class ParticleSystem {
     float temp = (particleType.equals("basaltic")) ? 2000 : 1500;
 
     // Obtener una partícula del pool en lugar de crear una nueva
-    Particle newParticle = particlePool.getParticle(pos_p, vel, 8, temp, particleType);
+    Particle newParticle = particlePool.getParticle(pos_p, vel, 9, temp, particleType);
     particles.add(newParticle);
   }
 

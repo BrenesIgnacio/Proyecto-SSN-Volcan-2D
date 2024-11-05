@@ -26,6 +26,6 @@ class Crater {
     textAlign(CENTER);
     textFont(boldFont);
     textSize(19);
-    text("Crater", 290, 100);
+    text("Crater", 290, 400);
   }
 }

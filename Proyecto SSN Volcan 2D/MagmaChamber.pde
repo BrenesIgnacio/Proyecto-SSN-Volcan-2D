@@ -29,6 +29,6 @@ class MagmaChamber {
     textAlign(CENTER);
     textFont(boldFont);
     textSize(19);
-    text("Magma Chamber", 250, 550);
+    text("Magma Chamber", 250, 850);
   }
 }

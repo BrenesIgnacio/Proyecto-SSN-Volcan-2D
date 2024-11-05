@@ -43,6 +43,6 @@ class RockLayers {
     textAlign(CENTER);
     textFont(boldFont);
     textSize(19);
-    text("Rock layers", 650, 400);
+    text("Rock layers", 650, 700);
   }
 }

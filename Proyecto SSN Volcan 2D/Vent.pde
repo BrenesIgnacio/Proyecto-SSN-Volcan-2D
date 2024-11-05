@@ -27,6 +27,6 @@ class Vent {
     textAlign(CENTER);
     textFont(boldFont);
     textSize(19);
-    text("Vent", 465, 150);
+    text("Vent", 465, 450);
   }
 }
