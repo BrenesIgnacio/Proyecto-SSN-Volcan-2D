@@ -10,7 +10,8 @@ class ParticleSystem {
   ParticlePool particlePool;
   int framesBetweenEmissions = 3; // Espaciar la emisión de partículas
   float countParticles;
-  boolean cond = false;
+  boolean cond = false; 
+  
 
 
   ParticleSystem(float emissionRate, String particleType, float x, float y) {
@@ -40,7 +41,9 @@ class ParticleSystem {
     }
 
     // Resolver colisiones usando una cuadrícula espacial
-    resolveCollisions();
+    if (particleType == "lava") resolveCollisions();
+    
+    
   }
 
   void emit() {
@@ -52,22 +55,29 @@ class ParticleSystem {
   void draw() {
     update();
     for (Particle p : particles) {
-      // Revisar si está en pantalla antes de actualizar
-      
+      if (particleType == "lava"){
         if (p.position.y < 425 ) {
           cond = true;
-          p.addGravity(new PVector(0, 0.001));  // Simula la gravedad
-          p.applyDrag(0.01);
+          //p.addGravity(new PVector(0, 0.001));  // Simula la gravedad
+          //p.applyDrag(0.01);
+          p.addGravity(new PVector(0, 0.8));  // Simula la gravedad
+          p.applyDrag(1.2);
           float dispersionFactor = random(-2, 3); // Factor de dispersión
           p.velocity.add(new PVector(random(-1, 1) * dispersionFactor * 2, -dispersionFactor));
           
           
         } else {
-          p.addGravity(new PVector(0, 0.4));  // Gravedad aumentada
-          p.applyDrag(1.5);                  // Resistencia del aire
+          p.addGravity(new PVector(0, 0.4));  
+          p.applyDrag(1.5);                  
         }
         p.draw();
+      }else if(particleType == "lavaOut"){
+        p.addGravity(new PVector(0, 0.7));  
+        p.applyDrag(2.5);
+        p.applyFriction(3.4);
+        p.draw();
       }
+    }
     
   }
   
@@ -83,7 +93,12 @@ class ParticleSystem {
   void addParticle() {
     PVector pos_p = new PVector(pos.x, pos.y);
     PVector vel = new PVector(random(-0.5,0.5), -10);
-    float temp = (particleType.equals("basaltic")) ? 2000 : 1500;
+    float temp;
+    if(particleType == "lava"){
+      temp = 2000;
+    }else{
+      temp = 1500;
+    }
 
     // Obtener una partícula del pool en lugar de crear una nueva
     Particle newParticle = particlePool.getParticle(pos_p, vel, 9, temp, particleType);
