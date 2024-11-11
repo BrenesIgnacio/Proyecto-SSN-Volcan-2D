@@ -62,24 +62,25 @@ class Particle {
   } 
   
   void borders() {
-    float minX = 390;
-    float maxX = width - 390;
+    float minX = 385;
+    float maxX = 415;
+    
     if (position.y > top){
-      if (position.x < minX + d / 2) {
-      position.x = minX + d / 2; 
-      velocity.x *= -damp; 
-      } else if (position.x > maxX - d / 2) {
+      if (position.x <  minX + d / 2) {
+        position.x = minX + d / 2; 
+        velocity.x *= -damp; 
+      } else if (position.x > maxX + d / 2) {
         position.x = maxX - d / 2; 
         velocity.x *= -damp;  
       }
       
-      if (position.y < d / 2) {
+      /*if (position.y < d / 2) {
         position.y = d / 2; 
         velocity.y *= -damp; 
       } else if (position.y > height - d / 2) {
         position.y = height - d / 2; 
         velocity.y *= -damp;  
-      }
+      }*/
     }
     
   }

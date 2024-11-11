@@ -59,10 +59,10 @@ class ParticleSystem {
       if (particleType.equals("lava")) {
         if (p.position.y < limit) {
           cond = true;
-          p.addGravity(new PVector(0, 0.8)); // Simula la gravedad
-          p.applyDrag(1.2);
-          float dispersionFactor = random(-2, 3); // Factor de dispersión
-          p.velocity.add(new PVector(random(-1, 1) * dispersionFactor * 2, -dispersionFactor));
+          
+        }else{
+          p.addGravity(new PVector(0, 0.1));  // Gravedad aumentada
+          p.applyDrag(0.4);                  // Resistencia del aire
         }
         p.draw();
       } else if (particleType.equals("lavaOut")) {
@@ -111,23 +111,25 @@ class ParticleSystem {
   }
 
   void resolveCollisions() {
+    // Uso de una cuadrícula simple para particionar el espacio y optimizar la detección de colisiones
     SpatialGrid grid = new SpatialGrid(width, height, 50); // Tamaño de celda 50
     for (Particle p : particles) {
       grid.insert(p);
     }
 
+    // Revisión de colisiones entre partículas en las mismas celdas
     for (Particle p1 : particles) {
       ArrayList<Particle> neighbors = grid.getNeighbors(p1);
       for (Particle p2 : neighbors) {
         if (p1 != p2 && p1.checkCollision(p2)) {
           PVector dir = PVector.sub(p1.position, p2.position).normalize();
-          float overlap = Math.max((p1.d / 2 + p2.d / 2) - PVector.dist(p1.position, p2.position), 0);
-          p1.position.add(dir.mult(overlap / 1.8));
-          p2.position.sub(dir.mult(overlap / 1.8));
+          float overlap = max((p1.d / 2 + p2.d / 2) - PVector.dist(p1.position, p2.position), 0);
+          p1.position.add(dir.mult(overlap / 2.2));  // Mueve p1
+          p2.position.sub(dir.mult(overlap / 2.2));  // Mueve p2
           p1.velocity.mult(0.1);
           p2.velocity.mult(0.1);
-          p1.velocity.limit(0.5);
-          p2.velocity.limit(0.5);
+          p1.velocity.limit(1.5);
+          p2.velocity.limit(1.5);
         }
       }
     }

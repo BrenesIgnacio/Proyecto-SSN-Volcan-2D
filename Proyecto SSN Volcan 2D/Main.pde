@@ -20,7 +20,7 @@ void setup() {
   controlPanel.setup();
   
   //Sistemas de particulas
-  system0 = new ParticleSystem(20, "lava", 400, 885);
+  system0 = new ParticleSystem(20, "lava", 400, 890);
   system1 = new ParticleSystem(20, "lavaOut", 320, 400);
   system2 = new ParticleSystem(20, "lavaOut", 480, 400);
   system3 = new ParticleSystem(10, "ceniza", 400, 410);//
@@ -99,8 +99,12 @@ void draw() {
   
   
   if(system0.level(890- height_l)){
-    
-     height_l += 1.3;
+    if(height_l < 200){
+      height_l += 0.3;
+    }else{
+      height_l += 0.5;
+    }
+     
     
     
   }
@@ -123,7 +127,7 @@ void draw() {
     // Dibujar el segmento del rectángulo
     fill(currentColor);
     noStroke();
-    rect(383, 890 - i, 35, 1);
+    rect(400 - 55/2 , 900 - i, 55, 1);
     }
 
   controlPanel.draw();
