@@ -11,6 +11,7 @@ class ParticleSystem {
   int framesBetweenEmissions = 3; // Espaciar la emisión de partículas
   float countParticles;
   boolean cond = false; 
+  float limit = 415;
   
 
 
@@ -41,7 +42,7 @@ class ParticleSystem {
     }
 
     // Resolver colisiones usando una cuadrícula espacial
-    if (particleType == "lava") resolveCollisions();
+    if (particleType == "lava" ) resolveCollisions();
     
     
   }
@@ -55,8 +56,8 @@ class ParticleSystem {
   void draw() {
     update();
     for (Particle p : particles) {
-      if (particleType == "lava"){
-        if (p.position.y < 425 ) {
+      if (particleType == "lava" ){
+        if (p.position.y < limit ) {
           cond = true;
           //p.addGravity(new PVector(0, 0.001));  // Simula la gravedad
           //p.applyDrag(0.01);
@@ -66,24 +67,26 @@ class ParticleSystem {
           p.velocity.add(new PVector(random(-1, 1) * dispersionFactor * 2, -dispersionFactor));
           
           
-        } else {
-          p.addGravity(new PVector(0, 0.4));  
-          p.applyDrag(1.5);                  
-        }
+        } 
         p.draw();
       }else if(particleType == "lavaOut"){
         p.addGravity(new PVector(0, 0.7));  
         p.applyDrag(2.5);
         p.applyFriction(3.4);
         p.draw();
+      }else if(particleType == "ceniza"){
+        p.addGravity(new PVector(0, 0.01));  
+        p.applyDrag(0.5);
       }
+      
+      
     }
     
   }
   
   void setControlValues(float temp,float mass){
     for (Particle p : particles){
-      if (p.position.y < 425){
+      if (p.position.y < limit){
         p.temperature = temp;
         p.mass = mass;
       }
@@ -129,6 +132,17 @@ class ParticleSystem {
       }
     }
   }
+  
+  boolean level(float num){
+    for (Particle p : particles) {
+      if(p.position.y < num){
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  
 }
 
 class ParticlePool {

@@ -2,9 +2,10 @@ VolcanoSimulation simulation;
 ParticleSystem system0;
 ParticleSystem system1;
 ParticleSystem system2;
+ParticleSystem system3;
 ControlPanel controlPanel;
 ArrayList<Attractor> fixedAgents;
-
+float height_l;
 
 float i;
 void setup() {
@@ -17,6 +18,7 @@ void setup() {
   system0 = new ParticleSystem(20, "lava", 400, 890);
   system1 = new ParticleSystem(20, "lavaOut", 320, 400);
   system2 = new ParticleSystem(20, "lavaOut", 480, 400);
+  system3 = new ParticleSystem(5, "lavaCrater", 400, 400);//
   fixedAgents = new ArrayList();
   fixedAgents.add(new Repeller(220, 800, 30, 70));
   fixedAgents.add(new Repeller(210, 720, 30, 70));
@@ -43,6 +45,8 @@ void setup() {
   fixedAgents.add(new Repeller(595, 840, 50, 70));
   fixedAgents.add(new Repeller(565, 880, 50, 70));
   
+  
+  
   // Añadir repulsores en cada capa de roca
   
   for (PVector pos : simulation.volcano.getCornerRepellers()) {
@@ -50,6 +54,9 @@ void setup() {
     Repeller repeller = new Repeller(pos.x, pos.y, 30, 100);
     fixedAgents.add(repeller);
   }
+  
+   height_l = 0.01;
+  
 }
 
 void draw() {
@@ -57,12 +64,18 @@ void draw() {
   simulation.draw();
   simulation.update();
   simulation.handleControls();
-
-  system0.draw();
+  
+  system3.draw();
   if(system0.cond){
+    system0.particles.clear();
     system1.draw();
     system2.draw();
+  }else{
+    system0.draw();
   }
+  
+  
+  
   for (Attractor a : fixedAgents) {
     //a.draw();
     a.attract(system1); // Utiliza la función de atracción que ahora será repulsión
@@ -73,6 +86,18 @@ void draw() {
     float XX = controlPanel.getTemperature();
     float YY = controlPanel.getMass();
   }
+  
+  if(system0.level(895 - height_l)){
+    height_l += 1.2;
+  }
+  
+  for (int i = 0; i < height_l; i+= 1) {
+      
+      color c = color(255);
+      fill(c);
+      noStroke();
+      rect(383 , 895  - i , 35, 1);
+    }
 
   controlPanel.draw();
 }

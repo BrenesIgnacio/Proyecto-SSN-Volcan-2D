@@ -8,6 +8,7 @@ class Particle {
   String type;
   //float solidificationTemp;
   float damp = 0.001;
+  float top = 415;
   
 
   Particle(PVector position, PVector velocity, float mass, float temperature, String type) {
@@ -41,7 +42,7 @@ class Particle {
     acc.mult(0);
     velocity.limit(2);
     if(type == "lava"){
-      if (position.y < 425){
+      if (position.y < top){
        
         
         /*velocity = PVector.random2D();
@@ -50,7 +51,7 @@ class Particle {
             
       }
       
-      if (position.y > 425) {
+      if (position.y > top) {
         borders();
         mass -= 0.003;
       } else {
@@ -69,7 +70,7 @@ class Particle {
   void borders() {
     float minX = 390;
     float maxX = width - 390;
-    if (position.y > 425){
+    if (position.y > top){
       if (position.x < minX + d / 2) {
       position.x = minX + d / 2; 
       velocity.x *= -damp; 
@@ -99,19 +100,16 @@ class Particle {
     // Solo se aplica el color si está por debajo del umbral del cráter
     if(type == "lava"){
     // Colores solo aplicables cuando la partícula está en la parte superior
-      if (position.y > 425){
+      if (position.y > top){
         float coolingFactor = map(position.y, 100, 900, 0, 1);  
         color currentColor;
         currentColor = lerpColor(hotColor, warmColor, map(coolingFactor, 0.5, 1, 0, 1));
         fill(currentColor, max(0, temperature));
-      }else{
-        float craterHeight = height * 0.04;
-        float coolingFactor = map(position.y, craterHeight, height, 0, 1);
-       
-        fill(coolColor, max(0, temperature));
       }
-    } else if(type == "lavaOut"){
+    } else if(type == "lavaOut" ){
       fill(hotColor, max(0, temperature));
+    }else if (type == "ceniza"){
+      fill(coolColor, max(0, temperature));
     }
     
     
