@@ -14,6 +14,7 @@ class ParticleSystem {
   boolean cond = false;
   float limit = 415;
   int frameCounter = 0; // Variable para contar los frames
+  float drag = 4;
   
   ParticleSystem(float emissionRate, String particleType, float x, float y) {
     particles = new ArrayList<>();
@@ -66,8 +67,8 @@ class ParticleSystem {
         p.draw();
       } else if (particleType.equals("lavaOut")) {
         p.addGravity(new PVector(0, 0.7));
-        p.applyDrag(2.5);
-        p.applyFriction(3.4);
+        p.applyDrag(drag);
+        p.applyFriction(2.5);
         p.draw();
       } else if (particleType.equals("ceniza")) {
         p.addGravity(new PVector(0, 0.001));
@@ -81,19 +82,28 @@ class ParticleSystem {
     }
   }
 
-  void setControlValues(float temp, float mass) {
-    for (Particle p : particles) {
-      if (p.position.y < limit) {
-        p.temperature = temp;
-        p.mass = mass;
-      }
-    }
+  void setDrag(float f) {
+    this.drag = f;
+  }
+  
+  void setEmissionRate(float num){
+    this.emissionRate = num;
   }
 
   void addParticle() {
     PVector pos_p = new PVector(pos.x, pos.y);
     PVector vel = new PVector(random(-0.5, 0.5), -10);
-    float temp = particleType.equals("lava") ? 2000 : 1500;
+    float temp = 0;
+    if (particleType.equals("lava")){
+      temp = 2500;
+    }else if(particleType.equals("lavaOut")){
+      temp = 1500;
+    }else if(particleType.equals("ceniza")){
+      temp = 1000;
+    
+    }
+    
+    
 
     // Obtener una partícula del pool en lugar de crear una nueva
     Particle newParticle = particlePool.getParticle(pos_p, vel, 9, temp, particleType);

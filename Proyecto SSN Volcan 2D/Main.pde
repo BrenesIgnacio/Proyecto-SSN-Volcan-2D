@@ -18,10 +18,14 @@ void setup() {
   simulation.setup();
   controlPanel = new ControlPanel(this);
   controlPanel.setup();
+  
+  //Sistemas de particulas
   system0 = new ParticleSystem(20, "lava", 400, 885);
   system1 = new ParticleSystem(20, "lavaOut", 320, 400);
   system2 = new ParticleSystem(20, "lavaOut", 480, 400);
   system3 = new ParticleSystem(10, "ceniza", 400, 410);//
+  
+  //Repeledores de lava
   fixedAgents = new ArrayList();
   fixedAgents.add(new Repeller(220, 800, 30, 70));
   fixedAgents.add(new Repeller(210, 720, 30, 70));
@@ -58,6 +62,7 @@ void setup() {
     fixedAgents.add(repeller);
   }
   
+   
    height_l = 0.01;
    temperature = 2000;
    crater = new CraterMag(new PVector(400, 405), 80);
@@ -91,10 +96,7 @@ void draw() {
     a.attract(system2);
   }
 
-  if (controlPanel.slider1 != null && controlPanel.slider2 != null) {
-    float XX = controlPanel.getTemperature();
-    float YY = controlPanel.getMass();
-  }
+  
   
   if(system0.level(890- height_l)){
     
@@ -102,6 +104,8 @@ void draw() {
     
     
   }
+  
+  
   
    // Colores para el gradiente
   color hotColor = color(255, 0, 0);      // Color rojo caliente
@@ -123,4 +127,23 @@ void draw() {
     }
 
   controlPanel.draw();
+  
+    
+    
+    
+  
+}
+
+
+
+void keyPressed() {
+    float drag = controlPanel.getVelocity();
+    float em = controlPanel.getgasEmission();
+    
+    
+    if(keyPressed && key == '1'){system1.setDrag(drag);}
+    if(keyPressed && key == '2'){system2.setDrag(drag);}
+    if(keyPressed && key == '3'){system3.setEmissionRate(em);}
+  
+
 }

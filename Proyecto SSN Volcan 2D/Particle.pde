@@ -42,14 +42,6 @@ class Particle {
     acc.mult(0);
     velocity.limit(2);
     if(type == "lava"){
-      if (position.y < top){
-       
-        
-        /*velocity = PVector.random2D();
-        float mag = (float) (randomGaussian() * 2 + 5);
-        velocity.setMag(mag);*/
-            
-      }
       
       if (position.y > top) {
         borders();
@@ -61,6 +53,8 @@ class Particle {
     }else if(type == "lavaOut"){
       mass -= 0.003;
     
+    }else if (type == "ceniza"){
+      mass -=0.01;
     }
     
     
@@ -107,7 +101,9 @@ class Particle {
         fill(currentColor, max(0, temperature));
       }
     } else if(type == "lavaOut" ){
-      fill(hotColor, max(0, temperature));
+      //float inter = map(i, 0, width, 0, 1);  // Interpolación entre 0 y 1
+      //color currentColor = lerpColor(hotColor, warmColor, inter);  // Gradiente entre los colores
+      fill(color(255, 140, 0), max(0, temperature));
     }else if (type == "ceniza"){
       fill(coolColor, max(0, temperature));
     }
@@ -115,7 +111,7 @@ class Particle {
     
     noStroke();
     ellipse(position.x, position.y, d, d);  // Dibuja la partícula
-}
+  }
 
 
   boolean isDead() {

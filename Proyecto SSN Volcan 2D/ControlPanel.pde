@@ -14,15 +14,15 @@ class ControlPanel {
   void setup() {
     cp5 = new ControlP5(parent);
 
-    slider1 = cp5.addSlider("Temperature")
+    slider1 = cp5.addSlider("Velocidad flujo")
                  .setPosition(20, 20)
                  .setSize(360, 10)
-                 .setRange(1, 2000);
+                 .setRange(0, 8);
                  
-    slider2 = cp5.addSlider("Mass")
+    slider2 = cp5.addSlider("Emisión gases")
                  .setPosition(20, 50)
                  .setSize(360, 10)
-                 .setRange(0, 9);
+                 .setRange(0, 30);
   }
 
   void draw() {
@@ -32,11 +32,11 @@ class ControlPanel {
   }
 
   // Getter methods for slider values
-  float getTemperature() {
+  float getVelocity() {
     return slider1.getValue();
   }
 
-  float getMass() {
+  float getgasEmission() {
     return slider2.getValue();
   }
 }
