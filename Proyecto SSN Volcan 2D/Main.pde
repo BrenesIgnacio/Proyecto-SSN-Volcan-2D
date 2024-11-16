@@ -9,6 +9,8 @@ float height_l;
 float temperature;
 Crater crater;
 
+ArrayList<FireworkSystem> fireworks = new ArrayList<FireworkSystem>();
+boolean condi = true;
 
 float i;
 void setup() {
@@ -90,6 +92,8 @@ void draw() {
   
   
   
+  
+  
   for (Attractor a : fixedAgents) {
     //a.draw();
     a.attract(system1); // Utiliza la función de atracción que ahora será repulsión
@@ -130,9 +134,17 @@ void draw() {
     rect(400 - 55/2 , 900 - i, 55, 1);
     }
 
+   
+
   controlPanel.draw();
   
     
+   //Proyectiles
+  for(FireworkSystem firework: fireworks){
+    firework.update();
+    firework.display();
+
+  }
     
     
   
@@ -148,6 +160,11 @@ void keyPressed() {
     if(keyPressed && key == '1'){system1.setDrag(drag);}
     if(keyPressed && key == '2'){system2.setDrag(drag);}
     if(keyPressed && key == '3'){system3.setEmissionRate(em);}
-  
+    if (keyPressed && key == '4') {
+      FireworkSystem firework = new FireworkSystem();
+      firework.launchRocket();  
+      fireworks.add(firework);  
+     
+    }
 
 }
