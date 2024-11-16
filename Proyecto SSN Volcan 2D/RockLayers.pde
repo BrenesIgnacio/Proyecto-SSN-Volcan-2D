@@ -58,7 +58,7 @@ class RockLayers {
       shape(layer);
     }
 
-    fill(0);
+    fill(255);
     textAlign(CENTER);
     textFont(boldFont);
     textSize(19);

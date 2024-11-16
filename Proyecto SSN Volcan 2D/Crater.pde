@@ -22,7 +22,7 @@ class Crater {
       ellipse(position.x, position.y, (radius - i) * 2, (radius - i) * heightFactor);
     }
 
-    fill(0);
+    fill(255);
     textAlign(CENTER);
     textFont(boldFont);
     textSize(19);

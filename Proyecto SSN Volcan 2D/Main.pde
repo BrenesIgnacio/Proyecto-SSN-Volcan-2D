@@ -73,6 +73,7 @@ void setup() {
 }
 
 void draw() {
+  //background(#6C5A5A);
   background(135, 206, 235);
   simulation.draw();
   simulation.update();
@@ -155,6 +156,8 @@ void draw() {
 void keyPressed() {
     float drag = controlPanel.getVelocity();
     float em = controlPanel.getgasEmission();
+    float em1 = controlPanel.getLavaEmission1();
+    float em2 = controlPanel.getLavaEmission2();
     
     
     if(keyPressed && key == '1'){system1.setDrag(drag);}
@@ -166,5 +169,8 @@ void keyPressed() {
       fireworks.add(firework);  
      
     }
+    //Controles de emision de gases 
+    if (keyPressed && key == '5'){system1.setEmissionRate(em1);}
+    if (keyPressed && key == '6'){system2.setEmissionRate(em2);}
 
 }
