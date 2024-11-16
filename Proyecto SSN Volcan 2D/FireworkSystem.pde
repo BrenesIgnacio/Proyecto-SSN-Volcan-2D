@@ -62,6 +62,7 @@ class FireworkSystem{
       while (i < system.nParticles) {
           vel_p = PVector.random2D();
           float mag = (float) (randomGaussian() * system.forceDev + system.forceMid);
+          
           vel_p.setMag(mag);
           particles.add(new Particle2(system.pos.x, system.pos.y, cp, vel_p,'p'));
           i++;
@@ -70,9 +71,9 @@ class FireworkSystem{
   }
   
   void launchRocket(){
-    PVector vel = new PVector(random(-15,15), -20);
-    vel.setMag(80);
-    system = new Rocket(400, 500 ,vel,30,2,4,this);
+    PVector vel = new PVector(0, -5);
+    vel.setMag(30);
+    system = new Rocket(400, 450 ,vel,50,30,50,this);
     particles.clear();
   }
 }

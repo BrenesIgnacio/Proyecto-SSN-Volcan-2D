@@ -160,7 +160,7 @@ void keyPressed() {
     if(keyPressed && key == '1'){system1.setDrag(drag);}
     if(keyPressed && key == '2'){system2.setDrag(drag);}
     if(keyPressed && key == '3'){system3.setEmissionRate(em);}
-    if (keyPressed && key == '4') {
+    if (keyPressed && key == '4' && system0.cond == true) {
       FireworkSystem firework = new FireworkSystem();
       firework.launchRocket();  
       fireworks.add(firework);  

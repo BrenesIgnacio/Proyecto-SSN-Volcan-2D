@@ -14,7 +14,7 @@ class Rocket  extends Particle2{
     this.nParticles = nParticles;
     this.forceMid = forceMid;
     this.forceDev = forceDev;
-    this.time = 70;
+    this.time = 13;
     this.system = system;
   }
   
