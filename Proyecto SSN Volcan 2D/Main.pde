@@ -10,7 +10,7 @@ float temperature;
 Crater crater;
 
 ArrayList<FireworkSystem> fireworks = new ArrayList<FireworkSystem>();
-boolean condi = true;
+boolean flag = false;
 
 float i;
 void setup() {
@@ -88,7 +88,9 @@ void draw() {
     system3.draw();
     
   }else{
-    system0.draw();
+    if(flag){
+      system0.draw();
+    }
   }
   
   
@@ -122,19 +124,20 @@ void draw() {
   color coolColor = color(50, 50, 50);    // Rojo oscuro
   
   // Dibujar el rectángulo con gradiente basado en la altura
-  for (int i = 0; i < height_l; i++) {
-    // Calcular el factor de enfriamiento en función de la altura
-    float coolingFactor = map(890 -i, 100, 900, 0, 1);  
-    color currentColor;
-    currentColor = lerpColor(hotColor, warmColor, map(coolingFactor, 0.5, 1, 0, 1));
-    fill(currentColor, max(0, temperature));
-    
-    // Dibujar el segmento del rectángulo
-    fill(currentColor);
-    noStroke();
-    rect(400 - 55/2 , 900 - i, 55, 1);
-    }
-
+  if (flag){
+    for (int i = 0; i < height_l; i++) {
+      // Calcular el factor de enfriamiento en función de la altura
+      float coolingFactor = map(890 -i, 100, 900, 0, 1);  
+      color currentColor;
+      currentColor = lerpColor(hotColor, warmColor, map(coolingFactor, 0.5, 1, 0, 1));
+      fill(currentColor, max(0, temperature));
+      
+      // Dibujar el segmento del rectángulo
+      fill(currentColor);
+      noStroke();
+      rect(400 - 55/2 , 900 - i, 55, 1);
+      }
+  }
    
 
   controlPanel.draw();
@@ -159,9 +162,11 @@ void keyPressed() {
     float em1 = controlPanel.getLavaEmission1();
     float em2 = controlPanel.getLavaEmission2();
     
-    
+    //Control de velocidad de flujo
     if(keyPressed && key == '1'){system1.setDrag(drag);}
     if(keyPressed && key == '2'){system2.setDrag(drag);}
+    
+    //Control de emision de gases
     if(keyPressed && key == '3'){system3.setEmissionRate(em);}
     if (keyPressed && key == '4' && system0.cond == true) {
       FireworkSystem firework = new FireworkSystem();
@@ -172,5 +177,6 @@ void keyPressed() {
     //Controles de emision de gases 
     if (keyPressed && key == '5'){system1.setEmissionRate(em1);}
     if (keyPressed && key == '6'){system2.setEmissionRate(em2);}
-
+    //Pausa de flujo de lava
+    if(keyPressed && key == ' '){flag = (flag)?  false : true;}
 }
